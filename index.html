@@ -782,6 +782,8 @@
                 var getPageNum = parseInt(sessionStorage.getItem('index'));
                 listTarget.hide();
 
+                setListNumber();
+
                 // 페이지 넘버 생성
                 for (var i = 1; i <= pageCount; i++){
                     targetObject.find('.pagination').append('<li><a href="#">'+ i +'</a></li>');
@@ -849,6 +851,13 @@
                     sessionStorage.setItem('index', counter);
                     targetObject.find($('.pagination li a')).removeClass('current');
                     targetObject.find($('.pagination li')).eq(counter-1).children('a').addClass('current');
+                }
+
+                // 게시물 번호 부여를 위한 함수
+                function setListNumber(){
+                    $(listTarget.get().reverse()).each(function (index){
+                        $(this).find('.num').empty().html(index + 1);
+                    });
                 }
             });
         </script>
